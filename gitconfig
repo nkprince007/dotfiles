@@ -1,0 +1,48 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Naveen Kumar Sangi
+	email = nkprince007@gmail.com
+[core]
+	editor = vim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = /Users/nkprince007/.gitignore_global
+[push]
+	default = matching
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	a = add --all
+	b = branch
+	c = commit
+	d = diff
+	f = fetch 
+	fo = fetch origin
+	pom = pull origin master
+	l = log --oneline
+	lg = log --oneline --graph --decorate --branches --tags --remotes
+	co = checkout
+	r = reset
+	rb = rebase
+	s = status
+	cge = config --global --edit
+	ss = stash save
+	sa = stash apply
+	sc = stash clear

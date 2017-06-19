@@ -55,8 +55,8 @@ set backspace=indent,eol,start
 " ***************************************************************************
 " THEMING AND SYNTAX
 " ***************************************************************************
-set background=dark " set dark background mode
-colorscheme dracula " set colorscheme dracula
+" set background=dark " set dark background mode
+" colorscheme dracula " set colorscheme dracula
 syntax on
 
 " show cursor line only in active window

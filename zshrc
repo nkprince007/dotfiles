@@ -27,3 +27,4 @@ compctl -K _pip_completion pip
 export EDITOR=vim           # set default editor as vim
 setopt interactivecomments  # ignore lines prefixed with '#'
 setopt nobeep               # stop beeping
+export PYTHONSTARTUP=~/.pythonrc # python tab completion

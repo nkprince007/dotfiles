@@ -1,5 +1,5 @@
 " ***************************************************************************
-" BASE CONFIGURATION 
+" BASE CONFIGURATION
 " ***************************************************************************
 scriptencoding utf-8    " set character encoding to utf-8
 set nocompatible        " do not use vi compatibility
@@ -13,7 +13,7 @@ if g:pluginstall != 0
 endif
 
 " ***************************************************************************
-" PLUGINS 
+" PLUGINS
 " ***************************************************************************
 call plug#begin()
 
@@ -28,9 +28,9 @@ call plug#end()
 " ***************************************************************************
 " MOVEMENT, SEARCHES
 " ***************************************************************************
-set hlsearch    " highlight all search matches 
+set hlsearch    " highlight all search matches
 set ignorecase  " ignore case for searching
-set smartcase   " override `ignorecase` if pattern contains uppercase letters 
+set smartcase   " override `ignorecase` if pattern contains uppercase letters
 set incsearch   " show where the pattern, as it was typed so far, matches
 
 " ***************************************************************************
@@ -43,7 +43,7 @@ set linebreak               " soft wrap text
 set showbreak="> "          " preceed wrapped text
 set colorcolumn=80          " show column ruler at 80 char width
 set textwidth=80            " width of text to be shown
-set showmatch               " display matching braces 
+set showmatch               " display matching braces
 set list                    " show tabs and trailing whitespaces
 set listchars=tab:▸\ ,eol:¬ " strings to use in `list` mode
 set showcmd                 " show pressed commands in key line
@@ -67,13 +67,13 @@ augroup CursorLineOnlyInActiveWindow
 augroup END
 
 " ***************************************************************************
-" INDENTATION 
+" INDENTATION
 " ***************************************************************************
 set autoindent      " auto indentation
 set expandtab       " expand TAB into spaces
 set shiftwidth=4    " helps indent plugins work better
-set smartindent     " smart choose indentation (e.g. comments continuously)
-set smarttab        " smart add tab in a new line 
+" set smartindent     " smart choose indentation (e.g. comments continuously)
+set smarttab        " smart add tab in a new line
 set softtabstop=4   " number of spaces to be inserted for a tab
 
 augroup IndentExceptions

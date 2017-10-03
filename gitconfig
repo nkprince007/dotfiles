@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
         name = Naveen Kumar Sangi
-        email = nkprince007@gmail.com
+        email = naveenkumarsangi@protonmail.com
 [core]
         editor = vim
         whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -54,3 +54,7 @@
         rao = remote add origin
 [merge]
 	tool = code
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

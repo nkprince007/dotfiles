@@ -37,3 +37,5 @@ source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Prefer homebrew binaries to local ones
 export PATH="/usr/local/sbin:$PATH"
+
+# brew bundle install

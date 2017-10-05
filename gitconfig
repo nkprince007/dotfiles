@@ -2,6 +2,7 @@
 [user]
         name = Naveen Kumar Sangi
         email = naveenkumarsangi@protonmail.com
+        signingkey = D853830889E423BA
 [core]
         editor = vim
         whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol

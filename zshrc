@@ -40,3 +40,18 @@ export PATH="/usr/local/sbin:$PATH"
 
 # gnupg config
 export "GPG_TTY=$(tty)"
+
+# proxy configuration
+export http_proxy=`scutil --proxy | awk '\
+  /HTTPEnable/ { enabled = $3; } \
+  /HTTPProxy/ { server = $3; } \
+  /HTTPPort/ { port = $3; } \
+  END { if (enabled == "1") { print "http://" server ":" port; } }'`
+export https_proxy=`scutil --proxy | awk '\
+  /HTTPEnable/ { enabled = $3; } \
+  /HTTPProxy/ { server = $3; } \
+  /HTTPPort/ { port = $3; } \
+  END { if (enabled == "1") { print "https://" server ":" port; } }'`
+
+# postgresql@9.6 binary path
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"

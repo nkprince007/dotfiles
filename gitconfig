@@ -53,9 +53,16 @@
         sc = stash clear
         rpo = remote prune origin
         rao = remote add origin
+        contrib = shortlog --summary --numbered
+        undo = reset HEAD~1 --mixed
+        save = git add -A && git commit -v -m 'SAVEPOINT'
+        fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+        fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 [merge]
 	tool = code
 [commit]
 	gpgsign = true
 [gpg]
 	program = gpg
+[advice]
+	statusHints = false

@@ -10,7 +10,7 @@ ZSH_THEME="refined"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git osx npm z zsh-autosuggestions)
+plugins=(git osx npm z zsh-autosuggestions kubectl)
 
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
@@ -52,6 +52,18 @@ export https_proxy=`scutil --proxy | awk '\
   /HTTPProxy/ { server = $3; } \
   /HTTPPort/ { port = $3; } \
   END { if (enabled == "1") { print "https://" server ":" port; } }'`
+export all_proxy=`scutil --proxy | awk '\
+  /HTTPEnable/ { enabled = $3; } \
+  /HTTPProxy/ { server = $3; } \
+  /HTTPPort/ { port = $3; } \
+  END { if (enabled == "1") { print server ":" port; } }'`
 
 # postgresql@9.6 binary path
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+
+# golang configuration
+export GOPATH=$HOME/Developer/gocode
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
+
+# misc
+alias brewtree='brew graph --installed | dot -Tpng -ograph.png'

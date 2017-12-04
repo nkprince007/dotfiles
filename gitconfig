@@ -27,37 +27,60 @@
         untracked = red bold
 [diff]
         tool = vimdiff
-[difftool]  
+[difftool]
         prompt = false
-[alias] a = add --all
+[alias]
+        a = add --all
+
         b = branch
         c = commit -S
         commit = commit -S
+
         d = diff
+        ds = diff --staged
+        dc = diff --cached
+
         f = fetch 
         fo = fetch origin
         pom = pull origin master
-        l = log --oneline
+        fpo = push --force origin HEAD
+
+        l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
         lg = log --oneline --graph --decorate --branches --tags --remotes
+        la = "!git config -l | grep alias | cut -c 7-"
+        ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
         co = checkout
+        cob = checkout -b
+
         r = reset
         hr = reset --hard HEAD
+
         rb = rebase
         rba = rebase --abort
         rbc = rebase --continue
         rbm = rebase --interactive master
+
         s = status
         cge = config --global --edit
+
         ss = stash save
         sa = stash apply
         sc = stash clear
+        sl = stash list
+
         rpo = remote prune origin
         rao = remote add origin
-        contrib = shortlog --summary --numbered
+
+        contrib = shortlog --summary --numbered --no-merges
         undo = reset HEAD~1 --mixed
         save = git add -A && git commit -v -m 'SAVEPOINT'
+        sortdiff = !sh -c 'git diff "$@" | grep "^[+-]" | sort --key=1.2 | uniq -u -s1'
+        cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+
         fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
         fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
 [merge]
 	tool = code
 [commit]
@@ -66,3 +89,8 @@
 	program = gpg
 [advice]
 	statusHints = false
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

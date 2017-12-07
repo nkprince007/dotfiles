@@ -64,6 +64,7 @@
         s = status
         cge = config --global --edit
 
+        sd = stash drop
         ss = stash save
         sa = stash apply
         sc = stash clear
@@ -74,7 +75,7 @@
 
         contrib = shortlog --summary --numbered --no-merges
         undo = reset HEAD~1 --mixed
-        save = git add -A && git commit -v -m 'SAVEPOINT'
+        save = "!f() { git add -A; git commit -v -m 'SAVEPOINT'; }; f"
         sortdiff = !sh -c 'git diff "$@" | grep "^[+-]" | sort --key=1.2 | uniq -u -s1'
         cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
 

@@ -32,7 +32,7 @@ setopt nobeep               # stop beeping
 export PYTHONSTARTUP=~/.pythonrc # python startup script
 
 # iTerm2 shell integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" 
+test -e "${HOME}/.iterm2_shell_integration.zsh"
 source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Prefer homebrew binaries to local ones
@@ -60,6 +60,7 @@ export all_proxy=`scutil --proxy | awk '\
 
 # postgresql@9.6 binary path
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+export PATH=$PATH:~/scripts
 
 # golang configuration
 export GOPATH=$HOME/Developer/gocode

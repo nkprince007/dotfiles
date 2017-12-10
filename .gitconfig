@@ -73,6 +73,7 @@
         rpo = remote prune origin
         rao = remote add origin
 
+        open = !sh -c 'open $(git remote get-url origin)'
         contrib = shortlog --summary --numbered --no-merges
         undo = reset HEAD~1 --mixed
         save = "!f() { git add -A; git commit -v -m 'SAVEPOINT'; }; f"

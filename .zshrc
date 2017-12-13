@@ -68,3 +68,8 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
 # misc
 alias brewtree='brew graph --installed | dot -Tpng -ograph.png'
+alias rm=trash
+
+
+# added by travis gem
+[ -f /Users/naveenkumarsangi/.travis/travis.sh ] && source /Users/naveenkumarsangi/.travis/travis.sh

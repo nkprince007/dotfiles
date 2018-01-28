@@ -10,7 +10,7 @@ ZSH_THEME="refined"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git osx npm z zsh-autosuggestions kubectl)
+plugins=(git osx npm z zsh-autosuggestions kubectl docker)
 
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
@@ -68,8 +68,8 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
 # misc
 alias brewtree='brew graph --installed | dot -Tpng -ograph.png'
-alias rm=trash
-
+alias g=hub
 
 # added by travis gem
 [ -f /Users/naveenkumarsangi/.travis/travis.sh ] && source /Users/naveenkumarsangi/.travis/travis.sh
+

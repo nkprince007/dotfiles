@@ -10,7 +10,7 @@ ZSH_THEME="refined"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git osx npm z zsh-autosuggestions kubectl docker)
+plugins=(git osx npm z zsh-autosuggestions docker)
 
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
@@ -66,9 +66,13 @@ export PATH=$PATH:~/scripts
 export GOPATH=$HOME/Developer/gocode
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
+
+# composer config
+export PATH=$PATH:$HOME/.composer/vendor/bin
+
 # misc
 alias brewtree='brew graph --installed | dot -Tpng -ograph.png'
-alias g=hub
+alias g=lab
 
 # added by travis gem
 [ -f /Users/naveenkumarsangi/.travis/travis.sh ] && source /Users/naveenkumarsangi/.travis/travis.sh

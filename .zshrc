@@ -1,5 +1,6 @@
 # zsh configuration
 export ZSH=$HOME/.oh-my-zsh
+export PROJECTS=/Volumes/Projects/Developer
 
 # install oh-my-zsh if it already isn't installed
 if [ ! -s $HOME/.oh-my-zsh/oh-my-zsh.sh ]; then
@@ -36,7 +37,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh"
 source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Prefer homebrew binaries to local ones
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 # gnupg config
 export "GPG_TTY=$(tty)"
@@ -46,24 +47,16 @@ export http_proxy=`scutil --proxy | awk '\
   /HTTPEnable/ { enabled = $3; } \
   /HTTPProxy/ { server = $3; } \
   /HTTPPort/ { port = $3; } \
-  END { if (enabled == "1") { print "http://" server ":" port; } }'`
-export https_proxy=`scutil --proxy | awk '\
-  /HTTPEnable/ { enabled = $3; } \
-  /HTTPProxy/ { server = $3; } \
-  /HTTPPort/ { port = $3; } \
-  END { if (enabled == "1") { print "https://" server ":" port; } }'`
-export all_proxy=`scutil --proxy | awk '\
-  /HTTPEnable/ { enabled = $3; } \
-  /HTTPProxy/ { server = $3; } \
-  /HTTPPort/ { port = $3; } \
   END { if (enabled == "1") { print server ":" port; } }'`
+export https_proxy=$http_proxy
+export all_proxy=$http_proxy
 
 # postgresql@9.6 binary path
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export PATH=$PATH:~/scripts
 
 # golang configuration
-export GOPATH=$HOME/Developer/gocode
+export GOPATH=$PROJECTS/gocode
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
 

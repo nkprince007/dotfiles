@@ -1,0 +1,28 @@
+[
+    {
+        "defaults": {
+            "link": {
+                "relink": true
+            }
+        }
+    },
+    {
+        "clean": ["~"]
+    },
+    {
+        "link": {
+            "~/.gitconfig": ".gitconfig",
+            "~/.zshrc": ".zshrc",
+            "~/.vimrc": ".vimrc",
+            "~/.pythonrc": ".pythonrc",
+            "~/.gitignore_global": ".gitignore_global",
+            "~/scripts": "scripts"
+        }
+    },
+    {
+        "shell": [
+            ["git submodule update --init --recursive", "Installing submodules"],
+            ["brew bundle"]
+        ]
+    }
+]

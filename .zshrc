@@ -1,32 +1,41 @@
 # zsh configuration
-export ZSH=$HOME/.oh-my-zsh
+export EDITOR=vim
+export LANG=en_US.UTF-8
 export PROJECTS=/Volumes/Code/Developer
+export SCRIPTS=$HOME/scripts
+export ZSH=$HOME/.oh-my-zsh
+setopt interactivecomments
+setopt nobeep
 
 # nvm configuration
 export NVM_LAZY_LOAD=true
 export NVM_DIR=$HOME/.nvm
 
-# install oh-my-zsh if it already isn't installed
-if [ ! -s $HOME/.oh-my-zsh/oh-my-zsh.sh ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
+# oh-my-zsh configuration
+COMPLETION_WAITING_DOTS=true
+DISABLE_AUTO_TITLE=true
+DISABLE_UPDATE_PROMPT=true
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
 
-# use nvm from Homebrew
-if [ ! -s $NVM_DIR/nvm.sh ]; then
-    ln -s $(brew --prefix nvm)/nvm.sh $NVM_DIR/nvm.sh
-fi
+# Antigen configuration
+source $(brew --prefix)/share/antigen/antigen.zsh
 
-ZSH_THEME="refined"
-DISABLE_AUTO_TITLE="true"
-COMPLETION_WAITING_DOTS="true"
 
-plugins=(git osx npm z zsh-autosuggestions docker zsh-nvm)
+antigen use oh-my-zsh
+antigen bundle common-aliases
+antigen bundle history
+antigen bundle git
+antigen bundle lukechilds/zsh-nvm
+antigen bundle marzocchi/zsh-notify
+antigen bundle z
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen theme refined 
+antigen apply
 
-source $ZSH/oh-my-zsh.sh
-export LANG=en_US.UTF-8
-export EDITOR=vim           # set default editor as vim
-setopt interactivecomments  # ignore lines prefixed with '#'
-setopt nobeep               # stop beeping
+# terminal-notifier configuration
+zstyle ':notify:*' notifier $(which terminal-notifier)
+zstyle ':notify:*' command-complete-timeout 10
 
 # iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh"
@@ -47,21 +56,13 @@ export http_proxy=`scutil --proxy | awk '\
 export https_proxy=$http_proxy
 export all_proxy=$http_proxy
 
-# postgresql@9.6 binary path
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
-
 # golang configuration
 export GOPATH=$PROJECTS/gocode
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
 # misc
 alias brewtree='brew graph --installed | dot -Tpng -ograph.png'
-alias g=lab
-
-# ns2-allinone
-export PATH="/Volumes/Code/ns-allinone-2.35/bin:/Volumes/Code/ns-allinone-2.35/tcl8.5.10/unix:/Volumes/Code/ns-allinone-2.35/tk8.5.10/unix:$PATH"
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/Volumes/Code/ns-allinone-2.35/otcl-1.14":"/Volumes/Code/ns-allinone-2.35/lib"
-export TCL_LIBRARY=/Volumes/Code/ns-allinone-2.35/tcl8.5.10/library:/Volumes/Code/ns-allinone-2.35/tcl8.5.10/library
+alias dc=docker-compose
 
 # use scripts before everything else
 export PATH=$HOME/scripts:$PATH

@@ -6,21 +6,23 @@
 [core]
         editor = vim
         whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = /Users/naveenkumarsangi/.gitignore_global
+        excludesfile = /Users/naveenkumarsangi/.gitignore_global
+        pager = diff-so-fancy | less --tabs=4 -RFX
 [push]
         default = matching
 [color]
-        ui = auto
+        ui = true
 [color "branch"]
         current = yellow bold
         local = green bold
         remote = cyan bold
 [color "diff"]
-        meta = yellow bold
+        meta = yellow
         frag = magenta bold
         old = red bold
         new = green bold
         whitespace = red reverse
+        commit = yellow bold
 [color "status"]
         added = green bold
         changed = yellow bold
@@ -83,16 +85,36 @@
         fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
         fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 
+        change = codereview change
+        gofmt = codereview gofmt
+        mail = codereview mail
+        pending = codereview pending
+        submit = codereview submit
+        sync = codereview sync
+
 [merge]
-	tool = code
+        tool = code
 [commit]
-	gpgsign = true
+        gpgsign = true
 [gpg]
-	program = gpg
+        program = gpg
 [advice]
-	statusHints = false
+        statusHints = false
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+        required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+[gitlab]
+        host = https://gitlab.com
+        user = nkprince007
+        token = oGsAadDuGCo8xnwYB7BQ
+[http]
+[https]
+[http]
+        cookiefile = /Users/nkprince007/.gitcookies
+[color "diff-highlight"]
+        oldNormal = red bold
+        oldHighlight = red bold 52
+        newNormal = green bold
+        newHighlight = green bold 22

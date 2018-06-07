@@ -23,8 +23,9 @@ antigen theme refined
 antigen apply
 
 # terminal-notifier configuration
-zstyle ':notify:*' notifier $(which terminal-notifier)
-zstyle ':notify:*' command-complete-timeout 10
+zstyle ':notify:*' command-complete-timeout 15
+zstyle ':notify:*' success-sound "Submarine"
+zstyle ':notify:*' error-sound "Glass"
 
 # iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh"

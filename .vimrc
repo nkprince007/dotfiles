@@ -30,6 +30,8 @@ Plug 'mattn/emmet-vim'                                  " emmet autocomplete
 Plug 'dougnukem/vim-swap-lines'                         " swap lines
 Plug 'vim-scripts/indentpython.vim'                     " python autoindent
 Plug 'tpope/vim-fugitive'                               " git wrapper for vim
+Plug 'tpope/vim-surround'                               " surroundings vim
+Plug 'JamshedVesuna/vim-markdown-preview'               " markdown for vim
 
 call plug#end()
 
@@ -154,7 +156,10 @@ let mapleader = ","
 nmap <c-p> :CtrlP<cr>
 nmap <leader>ft :NERDTreeToggle<cr>
 
-"split navigations
+" vim markdown preview
+let g:vim_markdown_preview_pandoc=1
+
+" split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -170,6 +175,9 @@ map <C-t><up> :tabr<cr>
 map <C-t><down> :tabl<cr>
 map <C-t><left> :tabp<cr>
 map <C-t><right> :tabn<cr>
+
+" ctrlp.vim configuration
+let g:ctrlp_custom_ignore = 'node_modules\|vendor\|.DS_Store\|.git'
 
 " airline configuration
 let g:airline_theme='dracula'

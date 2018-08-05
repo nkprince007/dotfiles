@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Upload text/images to clbin.com from the command line
+pbpaste | clbin

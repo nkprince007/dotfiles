@@ -5,3 +5,4 @@ package-lock.json
 .ropeproject
 .pytest_cache
 node_modules
+.venv

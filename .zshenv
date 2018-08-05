@@ -19,7 +19,7 @@ export PATH=~/.config/yarn/global/node_modules/.bin:$PATH
 # gnupg config
 export "GPG_TTY=$(tty)"
 
-proxy configuration
+# proxy configuration
 export http_proxy=`scutil --proxy | awk '\
  /HTTPEnable/ { enabled = $3; } \
  /HTTPProxy/ { server = $3; } \

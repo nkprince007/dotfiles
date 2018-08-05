@@ -19,6 +19,8 @@ antigen bundle marzocchi/zsh-notify
 antigen bundle z
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle greymd/docker-zsh-completion
+antigen bundle kubectl
 antigen theme refined
 antigen apply
 
@@ -31,10 +33,17 @@ zstyle ':notify:*' error-sound "Glass"
 test -e "${HOME}/.iterm2_shell_integration.zsh"
 source "${HOME}/.iterm2_shell_integration.zsh"
 
+# powerlevel9k customizations
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+DISABLE_UPDATE_PROMPT=true
+
 # misc
 alias brewtree='brew graph --installed | dot -Tpng -ograph.png'
 alias dc=docker-compose
 alias vim=nvim
+alias dk=docker
 
 # additional functions
 ts() {
@@ -48,3 +57,40 @@ ts() {
         print -n -- $line
     done
 }
+
+docker-start() {
+    open /Applications/Docker.app
+}
+
+docker-stop() {
+    killall Docker
+}
+
+function e() {
+    emacsclient -a "" $@
+}
+
+function et() {
+    e -nw $@
+}
+
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+
+# GnuPG preparation
+if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+    source ~/.gnupg/.gpg-agent-info
+    export GPG_AGENT_INFO
+fi
+
+kubectl () {
+    command kubectl $*
+    if [[ -z $KUBECTL_COMPLETE ]]
+    then
+        source <(command kubectl completion zsh)
+        KUBECTL_COMPLETE=1
+    fi
+}
+
+# added by travis gem
+[ -f /Users/nkprince007/.travis/travis.sh ] && source /Users/nkprince007/.travis/travis.sh

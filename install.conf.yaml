@@ -9,9 +9,9 @@
     ~/.dotfiles: ''
     ~/.gitconfig: .gitconfig
     ~/.zshrc: .zshrc
-    ~/.zshenv": .zshenv
-    ~/.vimrc": .vimrc
-    ~/.pythonrc": .pythonrc
+    ~/.zshenv: .zshenv
+    ~/.vimrc: .vimrc
+    ~/.pythonrc: .pythonrc
     ~/.gitignore_global: .gitignore_global
     ~/scripts: scripts
 

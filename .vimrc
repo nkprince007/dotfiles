@@ -18,7 +18,8 @@ endif
 " ***************************************************************************
 call plug#begin()
 
-Plug 'dracula/vim', {'as': 'dracula'}                   " colorscheme
+Plug 'rakr/vim-one', {'as': 'one'}
+Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    " file navbar
 Plug 'ctrlpvim/ctrlp.vim'                               " fuzzy search
 Plug 'airblade/vim-gitgutter'                           " git gutter
@@ -32,6 +33,11 @@ Plug 'vim-scripts/indentpython.vim'                     " python autoindent
 Plug 'tpope/vim-fugitive'                               " git wrapper for vim
 Plug 'tpope/vim-surround'                               " surroundings vim
 Plug 'JamshedVesuna/vim-markdown-preview'               " markdown for vim
+Plug 'tpope/vim-commentary'                             " comments made easy
+Plug 'mileszs/ack.vim'                                  " project with search
+Plug 'godlygeek/tabular'                                " text alignment
+Plug 'kien/tabman.vim'                                  " tab management
+Plug 'ekalinin/Dockerfile.vim'                          " docker support
 
 call plug#end()
 
@@ -89,12 +95,28 @@ if has('persistent_undo')
   set undodir=~/.config/vim/tmp/undo/
 endif
 
+let g:ackprg='ag --nogroup --column --nocolor'
+
 " ***************************************************************************
 " THEMING AND SYNTAX
 " ***************************************************************************
-" set background=dark " set dark background mode
-color dracula " set colorscheme dracula
-syntax enable
+set background=dark              " set light background
+colorscheme one                  " set colorscheme
+syntax enable                    " enable syntax highlighting
+
+" This enables truecolor support for nvim
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
 
 " show cursor line only in active window
 augroup CursorLineOnlyInActiveWindow
@@ -170,6 +192,10 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 autocmd FileType html,css imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
+" Movemenet in buffers
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprev<cr>
+
 " Movement in tabs
 map <C-t><up> :tabr<cr>
 map <C-t><down> :tabl<cr>
@@ -177,10 +203,11 @@ map <C-t><left> :tabp<cr>
 map <C-t><right> :tabn<cr>
 
 " ctrlp.vim configuration
-let g:ctrlp_custom_ignore = 'node_modules\|vendor\|.DS_Store\|.git'
+" let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
 
 " airline configuration
-let g:airline_theme='dracula'
+let g:airline_theme='one'
+let g:one_allow_italics = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " Golang configuration

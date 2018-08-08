@@ -31,11 +31,18 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     ;; spacemacs related layers
      spacemacs-ui
      spacemacs-ui-visual
      spacemacs-layouts
      spacemacs-editing
 
+     ;; language layers
+     html
+     docker
+     yaml
+     markdown
+     org
      (python :variables
              python-test-runner 'pytest
              pytest-cmd-flags "--cov -vv")
@@ -43,18 +50,15 @@ values."
          gofmt-command "goimports"
          go-tab-width 4)
 
+     ;; miscellaneous layers
      auto-completion
      better-defaults
      emacs-lisp
-     docker
      ivy
-     git
-     html
      osx
-     yaml
-     markdown
-     org
+     imenu-list
      syntax-checking
+     git
      (version-control :variables
                       version-control-diff-side 'left
                       version-control-diff-tool 'diff-hl)
@@ -142,8 +146,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("Fira Code"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -334,9 +338,11 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(package-selected-packages
    (quote
-    (ws-butler uuidgen smartparens move-text lorem-ipsum link-hint hungry-delete go-guru go-eldoc expand-region eval-sexp-fu highlight company-go go-mode clean-aindent-mode aggressive-indent spaceline powerline popwin persp-mode neotree hl-todo golden-ratio fill-column-indicator fancy-battery eyebrowse dracula-theme-theme winum restart-emacs paradox spinner open-junk-file flx-ido ace-link yaml-mode web-mode unfill tagedit smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pug-mode pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow launchctl htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit ghub with-editor emmet-mode dracula-theme dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diff-hl company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic f dash s which-key wgrep use-package smex pcre2el macrostep ivy-hydra helm-make flx exec-path-from-shell evil-visualstar evil-escape elisp-slime-nav diminish counsel-projectile bind-map auto-compile ace-window))))
+    (hydra helm helm-core evil goto-chg undo-tree projectile pkg-info epl counsel swiper ivy bind-key packed async avy popup imenu-list ws-butler uuidgen smartparens move-text lorem-ipsum link-hint hungry-delete go-guru go-eldoc expand-region eval-sexp-fu highlight company-go go-mode clean-aindent-mode aggressive-indent spaceline powerline popwin persp-mode neotree hl-todo golden-ratio fill-column-indicator fancy-battery eyebrowse dracula-theme-theme winum restart-emacs paradox spinner open-junk-file flx-ido ace-link yaml-mode web-mode unfill tagedit smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pug-mode pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow launchctl htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit ghub with-editor emmet-mode dracula-theme dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diff-hl company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic f dash s which-key wgrep use-package smex pcre2el macrostep ivy-hydra helm-make flx exec-path-from-shell evil-visualstar evil-escape elisp-slime-nav diminish counsel-projectile bind-map auto-compile ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

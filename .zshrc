@@ -26,8 +26,12 @@ antigen apply
 
 # terminal-notifier configuration
 zstyle ':notify:*' command-complete-timeout 15
+zstyle ':notify:*' error-icon "$HOME/scripts/assets/angry.gif"
+zstyle ':notify:*' error-title "wow such #fail"
+zstyle ':notify:*' success-icon "$HOME/scripts/assets/badass.jpg"
+zstyle ':notify:*' success-title "very #success. wow"
+zstyle ':notify:*' error-sound "Purr"
 zstyle ':notify:*' success-sound "Submarine"
-zstyle ':notify:*' error-sound "Glass"
 
 # iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh"

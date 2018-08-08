@@ -42,5 +42,8 @@ export PATH=$HOME/.rbenv/shims/:$PATH
 # use pyenv python by default
 export PATH=$HOMW/.pyenv/bin:$PATH
 
+# use cargo bin
+export PATH=$HOME/.cargo/bin:$PATH
+
 # use homebrew curl instead of system curl
 export PATH="/usr/local/opt/curl/bin:$PATH"

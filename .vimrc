@@ -18,7 +18,6 @@ endif
 " ***************************************************************************
 call plug#begin()
 
-Plug 'rakr/vim-one', {'as': 'one'}
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    " file navbar
 Plug 'ctrlpvim/ctrlp.vim'                               " fuzzy search
@@ -101,7 +100,7 @@ let g:ackprg='ag --nogroup --column --nocolor'
 " THEMING AND SYNTAX
 " ***************************************************************************
 set background=dark              " set light background
-colorscheme one                  " set colorscheme
+colorscheme dracula              " set colorscheme
 syntax enable                    " enable syntax highlighting
 
 " This enables truecolor support for nvim
@@ -206,8 +205,8 @@ map <C-t><right> :tabn<cr>
 " let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
 
 " airline configuration
-let g:airline_theme='one'
-let g:one_allow_italics = 1
+let g:airline_theme='dracula'
+" let g:one_allow_italics = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " Golang configuration

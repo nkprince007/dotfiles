@@ -324,6 +324,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq auto-window-vscroll nil)
+  (setq company-idle-delay 0.1
+        company-minimum-prefix-length 1)
   (setq redisplay-dont-pause t
         scroll-margin 1
         scroll-step 1

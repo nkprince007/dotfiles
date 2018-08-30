@@ -41,7 +41,10 @@ values."
      docker
      html
      markdown
+     nginx
      org
+     react
+     rust
      yaml
      (python :variables
              python-test-runner 'pytest
@@ -60,14 +63,15 @@ values."
      evil-commentary
      git
      imenu-list
-     ivy
+     helm
      osx
      syntax-checking)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(dracula-theme)
+   dotspacemacs-additional-packages '(dracula-theme
+                                      all-the-icons)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -146,7 +150,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Fira Code"
                                :size 14
                                :weight normal
                                :width normal
@@ -323,6 +327,13 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (setq neo-hidden-regexp-list '("^\\." "\\.cs\\.meta$"
+                                 "\\.pyc$"
+                                 "~$"
+                                 "^#.*#$"
+                                 "\\.elc$"))
+  (if (fboundp 'mac-auto-operator-composition-mode)
+      (mac-auto-operator-composition-mode))
   (setq auto-window-vscroll nil)
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 1)
@@ -331,6 +342,18 @@ you should place your code here."
         scroll-step 1
         scroll-conservatively 10000
         scroll-preserve-screen-position 1)
+  (setq-default
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -342,12 +365,13 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
+ '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (evil-commentary xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help hydra helm helm-core evil goto-chg undo-tree projectile pkg-info epl counsel swiper ivy bind-key packed async avy popup imenu-list ws-butler uuidgen smartparens move-text lorem-ipsum link-hint hungry-delete go-guru go-eldoc expand-region eval-sexp-fu highlight company-go go-mode clean-aindent-mode aggressive-indent spaceline powerline popwin persp-mode neotree hl-todo golden-ratio fill-column-indicator fancy-battery eyebrowse dracula-theme-theme winum restart-emacs paradox spinner open-junk-file flx-ido ace-link yaml-mode web-mode unfill tagedit smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pug-mode pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow launchctl htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit ghub with-editor emmet-mode dracula-theme dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diff-hl company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic f dash s which-key wgrep use-package smex pcre2el macrostep ivy-hydra helm-make flx exec-path-from-shell evil-visualstar evil-escape elisp-slime-nav diminish counsel-projectile bind-map auto-compile ace-window))))
+    (toml-mode racer flycheck-rust cargo rust-mode helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag ace-jump-helm-line nginx-mode all-the-icons memoize web-beautify livid-mode skewer-mode simple-httpd js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode evil-commentary xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help hydra helm helm-core evil goto-chg undo-tree projectile pkg-info epl counsel swiper ivy bind-key packed async avy popup imenu-list ws-butler uuidgen smartparens move-text lorem-ipsum link-hint hungry-delete go-guru go-eldoc expand-region eval-sexp-fu highlight company-go go-mode clean-aindent-mode aggressive-indent spaceline powerline popwin persp-mode neotree hl-todo golden-ratio fill-column-indicator fancy-battery eyebrowse dracula-theme-theme winum restart-emacs paradox spinner open-junk-file flx-ido ace-link yaml-mode web-mode unfill tagedit smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder pug-mode pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow launchctl htmlize haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit ghub with-editor emmet-mode dracula-theme dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diff-hl company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic f dash s which-key wgrep use-package smex pcre2el macrostep ivy-hydra helm-make flx exec-path-from-shell evil-visualstar evil-escape elisp-slime-nav diminish counsel-projectile bind-map auto-compile ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((min-colors 16777216)) (:background "#282a36" :foreground "#f8f8f2")) (t (:background "#000000" :foreground "#f8f8f2")))))
+ '(default ((((min-colors 16777216)) (:background "#282a36" :foreground "#f8f8f2" :family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 141 :width normal)) (t (:background "#000000" :foreground "#f8f8f2" :family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 141 :width normal)))))

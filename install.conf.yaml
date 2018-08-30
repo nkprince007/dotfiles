@@ -10,6 +10,7 @@
     ~/.gitconfig: .gitconfig
     ~/.zshrc: .zshrc
     ~/.zshenv: .zshenv
+    ~/.config/nvim/init.nvim: .vimrc
     ~/.vimrc: .vimrc
     ~/.pythonrc: .pythonrc
     ~/.gitignore_global: .gitignore_global

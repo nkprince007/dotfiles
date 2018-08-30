@@ -48,6 +48,7 @@ alias brewtree='brew graph --installed | dot -Tpng -ograph.png'
 alias dc=docker-compose
 alias vim=nvim
 alias dk=docker
+alias code=code-insiders
 
 # additional functions
 ts() {

@@ -30,7 +30,7 @@ export https_proxy=$http_proxy
 export all_proxy=$http_proxy
 
 # golang configuration
-export GOPATH=$PROJECTS/gocode
+export GOPATH=$PROJECTS
 export PATH=$PATH:/usr/local/opt/go@1.9/libexec/bin:$GOPATH/bin
 
 # use scripts before everything else¬

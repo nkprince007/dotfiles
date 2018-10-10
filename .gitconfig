@@ -36,6 +36,7 @@
 
         b = branch
         c = commit -S
+        ca = commit -S --amend
         commit = commit -S
 
         d = diff

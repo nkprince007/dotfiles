@@ -34,8 +34,8 @@ zstyle ':notify:*' error-sound "Purr"
 zstyle ':notify:*' success-sound "Submarine"
 
 # iTerm2 shell integration
-test -e "${HOME}/.iterm2_shell_integration.zsh"
-source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh"
+# source "${HOME}/.iterm2_shell_integration.zsh"
 
 # powerlevel9k customizations
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline)

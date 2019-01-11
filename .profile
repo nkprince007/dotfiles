@@ -43,7 +43,8 @@ export PATH=$HOME/scripts:$PATH
 export PATH=$HOME/.rbenv/shims/:$PATH
 
 # use pyenv python by default
-export PATH=$HOMW/.pyenv/bin:$PATH
+eval "$(pyenv init -)"
+export PATH=$HOME/.pyenv/bin:$PATH
 
 # use cargo bin
 export PATH=$HOME/.cargo/bin:$PATH

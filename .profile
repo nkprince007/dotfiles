@@ -2,13 +2,13 @@
 export EDITOR=nvim
 export TERM=xterm-256color
 export LC_ALL=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PROJECTS=$HOME/Developer
 export SCRIPTS=$HOME/scripts
-export ZSH=$HOME/.oh-my-zsh
 
 # nvm configuration
-export NVM_LAZY_LOAD=true
+# export NVM_LAZY_LOAD=true
 export NVM_DIR=$HOME/.nvm
 
 # Prefer homebrew binaries to local ones
@@ -33,6 +33,9 @@ export all_proxy=$http_proxy
 export GOPATH=$PROJECTS
 export PATH=$PATH:/usr/local/opt/go@1.9/libexec/bin:$GOPATH/bin
 
+# flutter configuration
+export PATH=$PATH:/$PROJECTS/src/github.com/flutter/flutter/bin
+
 # use scripts before everything else¬
 export PATH=$HOME/scripts:$PATH
 
@@ -47,3 +50,6 @@ export PATH=$HOME/.cargo/bin:$PATH
 
 # use homebrew curl instead of system curl
 export PATH="/usr/local/opt/curl/bin:$PATH"
+
+# git gettext issue
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1

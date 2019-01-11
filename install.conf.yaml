@@ -8,14 +8,14 @@
 - link:
     ~/.dotfiles: ''
     ~/.gitconfig: .gitconfig
-    ~/.zshrc: .zshrc
-    ~/.zshenv: .zshenv
+    ~/.profile: .profile
     ~/.config/nvim/init.nvim: .vimrc
     ~/.vimrc: .vimrc
     ~/.pythonrc: .pythonrc
     ~/.gitignore_global: .gitignore_global
     ~/.spacemacs: .spacemacs
     ~/scripts: scripts
+    ~/.config/omf: omf
 
 - shell:
     - ["git submodule update --init --recursive", "Installing submodules"]

@@ -5,38 +5,38 @@ scriptencoding utf-8    " set character encoding to utf-8
 set nocompatible        " do not use vi compatibility
 
 " i prefer using vim-plug, why because it's so small in size
-let g:pluginstall=system('[ -s ~/.vim/autoload/plug.vim ] ; echo $?')
-if g:pluginstall != 0
-    call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-    so ~/.vim/autoload/plug.vim
-    PlugInstall
-endif
+" let g:pluginstall=system('[ -s ~/.vim/autoload/plug.vim ] ; echo $?')
+" if g:pluginstall != 0
+"     call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+"     so ~/.vim/autoload/plug.vim
+"     PlugInstall
+" endif
 
 " ***************************************************************************
 " PLUGINS
 " ***************************************************************************
 call plug#begin()
 
-Plug 'dracula/vim', {'as': 'dracula'}
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    " file navbar
-Plug 'ctrlpvim/ctrlp.vim'                               " fuzzy search
-Plug 'airblade/vim-gitgutter'                           " git gutter
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}        " Golang support
-Plug 'vim-airline/vim-airline'                          " status line
-Plug 'vim-airline/vim-airline-themes'                   " theme status line
-Plug 'Valloric/YouCompleteMe'                           " autocomplete
-Plug 'mattn/emmet-vim'                                  " emmet autocomplete
-Plug 'dougnukem/vim-swap-lines'                         " swap lines
-Plug 'vim-scripts/indentpython.vim'                     " python autoindent
-Plug 'tpope/vim-fugitive'                               " git wrapper for vim
-Plug 'tpope/vim-surround'                               " surroundings vim
-Plug 'JamshedVesuna/vim-markdown-preview'               " markdown for vim
+" Plug 'dracula/vim', {'as': 'dracula'}
+" Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    " file navbar
+" Plug 'ctrlpvim/ctrlp.vim'                               " fuzzy search
+" Plug 'airblade/vim-gitgutter'                           " git gutter
+" Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}        " Golang support
+" Plug 'vim-airline/vim-airline'                          " status line
+" Plug 'vim-airline/vim-airline-themes'                   " theme status line
+" Plug 'Valloric/YouCompleteMe'                           " autocomplete
+" Plug 'mattn/emmet-vim'                                  " emmet autocomplete
+" Plug 'dougnukem/vim-swap-lines'                         " swap lines
+" Plug 'vim-scripts/indentpython.vim'                     " python autoindent
+" Plug 'tpope/vim-fugitive'                               " git wrapper for vim
+" Plug 'tpope/vim-surround'                               " surroundings vim
+" Plug 'JamshedVesuna/vim-markdown-preview'               " markdown for vim
 Plug 'tpope/vim-commentary'                             " comments made easy
-Plug 'mileszs/ack.vim'                                  " project with search
+" Plug 'mileszs/ack.vim'                                  " project with search
 Plug 'godlygeek/tabular'                                " text alignment
-Plug 'kien/tabman.vim'                                  " tab management
-Plug 'ekalinin/Dockerfile.vim'                          " docker support
+" Plug 'kien/tabman.vim'                                  " tab management
+" Plug 'ekalinin/Dockerfile.vim'                          " docker support
 
 call plug#end()
 
@@ -100,7 +100,6 @@ let g:ackprg='ag --nogroup --column --nocolor'
 " THEMING AND SYNTAX
 " ***************************************************************************
 set background=dark              " set light background
-colorscheme dracula              " set colorscheme
 syntax enable                    " enable syntax highlighting
 
 " This enables truecolor support for nvim
@@ -251,4 +250,3 @@ autocmd BufNewFile,BufRead *.py
     \ expandtab
     \ autoindent
     \ fileformat=unix
-

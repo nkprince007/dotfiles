@@ -4,6 +4,7 @@ fenv source $HOME/.profile
 alias brewtree='brew graph --installed | dot -Tpng -ograph.png'
 alias dc=docker-compose
 alias dk=docker
+alias e=emacsclient
 
 # additional functions
 function docker-start

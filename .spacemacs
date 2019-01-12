@@ -52,6 +52,7 @@ values."
      docker
      html
      (version-control :variables
+                      version-control-global-margin t
                       version-control-diff-tool 'diff-hl)
      syntax-checking
      )
@@ -318,7 +319,19 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (setq-default fringe-mode 'right-only)
+  (progn
+    ;; Git Gutter
+    (set-face-attribute
+     'git-gutter:added nil :background nil :foreground "green")
+    (set-face-attribute
+     'git-gutter:deleted nil :background nil :foreground "red")
+    (set-face-attribute
+     'git-gutter:modified nil :background nil :foreground "blue")
+
+    (setq-default
+     git-gutter:modified-sign "!"
+     ))
+
   (setq-default neo-hidden-regexp-list '("^\\." "\\.cs\\.meta$"
                                  "\\.pyc$"
                                  "~$"

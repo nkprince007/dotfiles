@@ -7,14 +7,11 @@ export LANG=en_US.UTF-8
 export PROJECTS=$HOME/Developer
 export SCRIPTS=$HOME/scripts
 
-# nvm configuration
-# export NVM_LAZY_LOAD=true
-export NVM_DIR=$HOME/.nvm
-
 # Prefer homebrew binaries to local ones
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 # Add yarn binary path to $PATH
+export PATH=/usr/local/Cellar/node/"$(node -v | sed 's/^.//')"/bin:$PATH
 export PATH=~/.config/yarn/global/node_modules/.bin:$PATH
 
 # gnupg config

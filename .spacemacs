@@ -334,6 +334,11 @@ you should place your code here."
      git-gutter:modified-sign "!"
      ))
 
+  ;; line numbers configuration
+  (setq-default display-line-numbers 'relative)
+  ;; Disable line-numbers minor mode for neotree
+  (add-hook 'neo-after-create-hook (lambda (&optional dummy) (display-line-numbers-mode -1)))
+
   (setq-default neo-hidden-regexp-list '("^\\." "\\.cs\\.meta$"
                                  "\\.pyc$"
                                  "~$"

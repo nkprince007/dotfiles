@@ -24,3 +24,6 @@ if test -f ~/.gnupg/.gpg-agent-info
     fenv source ~/.gnupg/.gpg-agent-info
     export GPG_AGENT_INFO
 end
+
+# pyenv init
+status --is-interactive; and source (pyenv init -|psub)

@@ -10,3 +10,4 @@ node_modules
 .python-version
 .env.sh
 *.rdb
+*.org

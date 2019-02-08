@@ -326,6 +326,14 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq org-agenda-files (list "~/.todos.org"))
 
+  (defadvice magit-start-process (around lang-en_US activate)
+    "Set LANG to en_US."
+    (let ((process-environment process-environment))
+      (setenv "LANG" "en_US")
+      ad-do-it))
+
+  (setq projectile-enable-caching t)
+
   (progn
     ;; Git Gutter
     (set-face-attribute

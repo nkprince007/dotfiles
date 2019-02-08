@@ -8,6 +8,7 @@ node_modules
 .venv
 .projectile
 .python-version
+.ruby-version
 .env.sh
 *.rdb
 *.org

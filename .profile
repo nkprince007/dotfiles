@@ -10,10 +10,6 @@ export SCRIPTS=$HOME/scripts
 # Prefer homebrew binaries to local ones
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-# Add yarn binary path to $PATH
-export PATH=/usr/local/Cellar/node/"$(node -v | sed 's/^.//')"/bin:$PATH
-export PATH=~/.config/yarn/global/node_modules/.bin:$PATH
-
 # gnupg config
 export "GPG_TTY=$(tty)"
 
@@ -40,7 +36,6 @@ export PATH=$HOME/scripts:$PATH
 export PATH=$HOME/.rbenv/shims/:$PATH
 
 # use pyenv python by default
-eval "$(pyenv init -)"
 export PATH=$HOME/.pyenv/bin:$PATH
 
 # use cargo bin
@@ -51,3 +46,7 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 
 # git gettext issue
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+

@@ -26,4 +26,7 @@ if test -f ~/.gnupg/.gpg-agent-info
 end
 
 # pyenv init
-status --is-interactive; and source (pyenv init -|psub)
+status --is-interactive; and source (pyenv init - --no-rehash|psub)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && fenv source "/usr/local/opt/nvm/nvm.sh"  # This loads nvm

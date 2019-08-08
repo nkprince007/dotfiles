@@ -15,7 +15,7 @@
     ~/.gitignore_global: .gitignore_global
     ~/.spacemacs: .spacemacs
     ~/scripts: scripts
-    ~/.config/omf: omf
+    ~/.config/fish/fishfile: fishfile
 
 - shell:
     - ["git submodule update --init --recursive", "Installing submodules"]

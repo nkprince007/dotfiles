@@ -48,7 +48,7 @@
         fpo = push --force origin HEAD
 
         l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-        lg = log --oneline --graph --decorate --branches --tags --remotes
+        lg = log --oneline --graph --decorate --all --abbrev-commit
         la = "!git config -l | grep alias | cut -c 7-"
         ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 
@@ -97,7 +97,7 @@
 [commit]
         gpgsign = true
 [gpg]
-        program = gpg
+	program = /usr/local/bin/gpg
 [advice]
         statusHints = false
 [filter "lfs"]

@@ -12,3 +12,6 @@ node_modules
 .env.sh
 *.rdb
 *.org
+*.pem
+*.sql
+*.code-workspace

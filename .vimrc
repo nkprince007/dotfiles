@@ -37,6 +37,7 @@ Plug 'tpope/vim-commentary'                             " comments made easy
 Plug 'godlygeek/tabular'                                " text alignment
 " Plug 'kien/tabman.vim'                                  " tab management
 " Plug 'ekalinin/Dockerfile.vim'                          " docker support
+Plug 'ap/vim-buftabline'
 
 call plug#end()
 

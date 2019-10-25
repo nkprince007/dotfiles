@@ -32,4 +32,9 @@ else
 fi
 
 echo "$resp"
-echo "$resp" | pbcopy
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    echo "$resp" | xclip -selection clipboard
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    echo "$resp" | pbcopy
+fi

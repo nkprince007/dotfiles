@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 # Upload text/images to clbin.com from the command line
-pbpaste | clbin
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    xclip -selection clipboard -o | clbin
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    pbpaste | clbin
+fi

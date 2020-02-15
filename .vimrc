@@ -18,7 +18,7 @@ set nocompatible        " do not use vi compatibility
 " ***************************************************************************
 call plug#begin()
 
-" Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'dracula/vim', {'as': 'dracula'}
 " Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    " file navbar
 " Plug 'ctrlpvim/ctrlp.vim'                               " fuzzy search
 " Plug 'airblade/vim-gitgutter'                           " git gutter
@@ -26,11 +26,11 @@ call plug#begin()
 " Plug 'vim-airline/vim-airline'                          " status line
 " Plug 'vim-airline/vim-airline-themes'                   " theme status line
 " Plug 'Valloric/YouCompleteMe'                           " autocomplete
-" Plug 'mattn/emmet-vim'                                  " emmet autocomplete
+Plug 'mattn/emmet-vim'                                  " emmet autocomplete
 " Plug 'dougnukem/vim-swap-lines'                         " swap lines
 " Plug 'vim-scripts/indentpython.vim'                     " python autoindent
-" Plug 'tpope/vim-fugitive'                               " git wrapper for vim
-" Plug 'tpope/vim-surround'                               " surroundings vim
+Plug 'tpope/vim-fugitive'                               " git wrapper for vim
+Plug 'tpope/vim-surround'                               " surroundings vim
 " Plug 'JamshedVesuna/vim-markdown-preview'               " markdown for vim
 Plug 'tpope/vim-commentary'                             " comments made easy
 " Plug 'mileszs/ack.vim'                                  " project with search
@@ -76,10 +76,10 @@ set updatetime=100              " update the refresh interval
 set encoding=utf-8              " set default encoding to utf-8
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 
-if !has('nvim')
-    set ttymouse=xterm2         " Indicate terminal type for mouse codes
-    set ttyscroll=3             " Speedup scrolling
-endif
+" if !has('nvim')
+"     set ttymouse=xterm2         " Indicate terminal type for mouse codes
+"     set ttyscroll=3             " Speedup scrolling
+" endif
 
 set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
@@ -203,6 +203,9 @@ map <C-t><right> :tabn<cr>
 
 " ctrlp.vim configuration
 " let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
+
+" theme configuration
+colorscheme dracula
 
 " airline configuration
 let g:airline_theme='dracula'

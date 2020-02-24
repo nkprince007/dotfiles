@@ -205,7 +205,7 @@ map <C-t><right> :tabn<cr>
 " let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
 
 " theme configuration
-colorscheme dracula
+" colorscheme dracula
 
 " airline configuration
 let g:airline_theme='dracula'

@@ -11,6 +11,8 @@
     ~/.profile: .profile
     ~/.config/nvim/init.nvim: .vimrc
     ~/.vimrc: .vimrc
+    ~/.bashrc: .bashrc
+    ~/.bash_profile: .bash_profile
     ~/.pythonrc: .pythonrc
     ~/.gitignore_global: .gitignore_global
     ~/.spacemacs: .spacemacs

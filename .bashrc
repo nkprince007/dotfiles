@@ -152,4 +152,4 @@ alias d=docker
 alias k=kubectl
 alias e=code-insiders
 source /usr/share/nvm/init-nvm.sh
-
+complete -C /usr/local/bin/mc mc

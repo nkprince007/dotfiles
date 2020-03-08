@@ -117,3 +117,10 @@
         newHighlight = green bold 22
 [branch]
 	sort = -authordate
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+[url "git@gitlab.viperdev.io.com:"]
+	insteadOf = https://gitlab.viperdev.io/
+

@@ -1,0 +1,249 @@
+#!/bin/sh
+
+[ -n "$BAKER_DEBUG" ] && set -x
+[ -z "$XDG_DATA_HOME" ] && XDG_DATA_HOME="$HOME/.local/share"
+
+script_name="${0##*/}"
+
+BAKER_HOME="$XDG_DATA_HOME/baker"
+TEMPLATES_DIR="$BAKER_HOME/templates"
+
+alias msgf='printf 1>&2'
+
+usage() {
+    msgf 'Baker\n\n'
+    msgf '%s is a tool which automates project spawning and makes it dead simple.\n\n' "$script_name"
+    msgf 'Usage:\n'
+    msgf '  %s spawn <template name> <project name> <repository directory>\n' "$script_name"
+    msgf '  %s download <template name>\n' "$script_name"
+    msgf '  %s update <template name>\n' "$script_name"
+    msgf '  %s download-all\n' "$script_name"
+    msgf '  %s update-all\n' "$script_name"
+    msgf '  %s help\n\n' "$script_name"
+    msgf 'Example:\n'
+    msgf '  %s spawn django-backend holographic-map ~/work/viperdev/holographic-map/backend\n' "$script_name"
+    msgf '  %s spawn ionic holographic-map ~/work/viperdev/holographic-map/frontend\n\n' "$script_name"
+    msgf 'Report bugs to https://gitlab.viperdev.io/viperdev/baker.\n'
+}
+
+panic() {
+    msgf "$@"
+    exit 1
+}
+
+panic_print_usage() {
+    msgf "$@"
+    usage
+    exit 1
+}
+
+setup_directory() {
+    dir="$1"
+
+    if [ ! -d "$dir" ]
+    then
+	msgf 'Creating %s ...\n' "$dir"
+	! mkdir -p "$dir" && \
+	    panic 'An error has occured when creating %s directory. Exiting ...\n' "$dir"
+    fi
+}
+
+# HACK: Due to inconsistent naming of the top level config file,
+#       this function is required to resolve the quirks.
+resolve_top_level_config_file() {
+    template_name="$1"
+
+    if [ "$template_name" = "django-backend" ]
+    then
+	echo "django.yaml"
+    else
+	echo "$template_name.yaml"
+    fi
+}
+
+setup_baker_directories() {
+    setup_directory "$BAKER_HOME"
+    setup_directory "$TEMPLATES_DIR"
+}
+
+check_if_template_is_downloaded() {
+    template_name="$1"
+    template_dir="$TEMPLATES_DIR/$template_name"
+    [ -d "$template_dir" ]
+    return $?
+}
+
+check_if_there_are_templates() {
+    lines="$(find $TEMPLATES_DIR  -maxdepth 1 -type d ! -path $TEMPLATES_DIR | wc -l)"
+    [ "$lines" != "0" ]
+    return $?
+}
+
+spawn_project() {
+    template_name="$1"
+    project_name="$2"
+    target_dir="$3"
+
+    [ -z "$template_name" ] && \
+	panic_print_usage 'Template name can not be empty.\n'
+
+    [ -z "$project_name" ] && \
+	panic_print_usage 'Project name can not be empty.\n'
+
+    [ -z "$target_dir" ] && \
+	panic_print_usage 'Repository directory can not be empty.\n'
+
+    template_dir="$TEMPLATES_DIR/$template_name"
+    template_name="$(basename $template_dir)"
+
+    # If realpath fails,
+    # It means there are folders within the path that doesn't exist.
+    #
+    # Just assume it's a proper directory and not a really odd collection of symlinks.
+    if ! target_dir="$(realpath $3 2>/dev/null)"
+    then
+	target_dir="$3"
+    fi
+
+    ! check_if_template_is_downloaded "$template_name" && \
+	panic '%s template does not exist. Have you downloaded it?\n' "$template_name"
+
+    [ -e "$target_dir" ] && \
+	panic '%s already exists. If you want to spawn a fresh a new project on that directory, delete it first.\n' "$target_dir"
+
+    setup_directory "$target_dir"
+
+    template_symlink_target="$(realpath $target_dir/../$template_name-template)"
+
+    if [ -e "$template_symlink_target" ]
+    then
+	msgf '%s exists. Assuming partial broken setup, exiting ...\n' "$template_symlink_target"
+	panic 'If you want to retry spawning a new project, delete it first.\n'
+    fi
+
+    ! ln -s "$template_dir" "$template_symlink_target" &&
+	panic 'An error has occured when symlinking template directory, exiting ...\n'
+
+    msgf 'Starting initial spawn of %s ...\n\n' "$project_name"
+
+    cd "$target_dir"
+
+    ! git init && \
+	panic 'An error occured when intializing git repository, exiting ...\n'
+
+    ! (env project_name="$project_name" initrepo=true \
+	   moban -cd "$template_symlink_target" \
+		 -td "$template_symlink_target/templates" \
+		 -c "$(resolve_top_level_config_file $template_name)" \
+		 -t moban.yaml.jj2 \
+		 -o .moban.yaml) && \
+	panic 'An error occured when spawning project, exiting ...\n'
+
+    msgf '\nPopulating project files ...\n\n'
+
+    ! moban && \
+	panic 'An error occured when populating project files, exiting ...\n'
+
+    msgf '\nApplying template variables ...\n\n'
+
+    ! moban && \
+	panic 'An error occured when applying template variables, exiting ...\n'
+
+    msgf '\nCreating commit marking intial spawn ...\n\n'
+
+    ! git add . && \
+	panic 'An error occured when adding files to staging, exiting ...\n'
+
+    ! git commit -m 'Initial spawn' && \
+	panic 'An error occured when commiting staging, exiting ...\n'
+
+    msgf '\nAll done.\n'
+    msgf 'Enjoy your freshly baked cookie.\n\n'
+    msgf 'Make sure to read the configuration file!\n'
+}
+
+download_template() {
+    template_name="$1"
+
+    [ -z "$template_name" ] && \
+	panic_print_usage 'Template name can not be empty.\n'
+
+    repo_url="git@gitlab.com:viperdev/template/$template_name"
+    target_dir="$TEMPLATES_DIR/$template_name"
+
+    check_if_template_is_downloaded "$template_name" && \
+	panic '%s already exists, Exiting ...\n' "$target_dir"
+
+    ! git clone "$repo_url" "$target_dir" && \
+	panic 'An error occured when cloning template repository\n'
+}
+
+download_all_templates() {
+    while read -r template_name
+    do
+	! check_if_template_is_downloaded "$template_name" && \
+	    msgf 'Downloading %s ...\n' "$template_name" && \
+	    download_template "$template_name"
+    done <<EOF
+django-backend
+ionic
+EOF
+    msgf 'All available templates are downloaded.\n'
+}
+
+update_template() {
+    template_name="$1"
+
+    [ -z "$template_name" ] && \
+	panic_print_usage 'Template name can not be empty.\n'
+
+    template_dir="$TEMPLATES_DIR/$template_name"
+
+    ! check_if_template_is_downloaded "$template_name" && \
+	panic '%s does not exist. Have you downloaded it?\n' "$template_name"
+
+    cd "$template_dir"
+
+    ! git pull && \
+	panic 'An error occured when pulling updates\n'
+}
+
+update_all_templates() {
+    ! check_if_there_are_templates && \
+	panic 'There are no templates installed. Please download them with "%s download-all".\n' "$script_name"
+
+    for i in "$(find $TEMPLATES_DIR  -maxdepth 1 -type d ! -path $TEMPLATES_DIR)"
+    do
+	template_name="$(basename $i)"
+	msgf 'Updating %s ...\n' "$template_name"
+	update_template "$template_name"
+    done
+    msgf 'All downloaded templates are updated.\n'
+}
+
+setup_baker_directories
+
+! command -v moban >/dev/null && \
+    panic 'Moban is not installed. Please install moban: "pip install moban~=0.3.3".\n'
+
+case "$1" in
+    spawn)
+	spawn_project "$2" "$3" "$4"
+	;;
+    download)
+	download_template "$1"
+	;;
+    update)
+	update_template "$1"
+	;;
+    download-all)
+	download_all_templates
+	;;
+    update-all)
+	update_all_templates
+	;;
+    *)
+	usage
+	;;
+esac
+

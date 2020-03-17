@@ -142,6 +142,7 @@ export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$P
 
 eval "$(pyenv init -)"
 export PATH="$HOME/flutter/bin:$PATH"
+export PATH="$HOME/Android/Sdk/cmdline-tools/latest/bin:$PATH"
 export MAKEFLAGS="-j$(($(nproc)+1))"
 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh

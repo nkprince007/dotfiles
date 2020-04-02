@@ -39,6 +39,7 @@
     ~/.config/fish/fishfile: fishfile
     ~/.tmux.conf: .tmux.conf
     ~/.config/fish/config.fish: config.fish
+    ~/.config/kitty: kitty
 
 - shell:
     - ["git submodule update --init --recursive", "Installing submodules"]

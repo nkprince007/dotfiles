@@ -1,0 +1,24 @@
+#!/bin/sh
+
+tar -cpzf backup.tar.gz \
+    --exclude=backup.tar.gz\
+    --exclude=.cache \
+    --exclude=.ccache \
+    --exclude=.debug \
+    --exclude=.dbus \
+    --exclude=.gvfs \
+    --exclude=.local/share/gvfs-metadata \
+    --exclude=.local/share/Trash \
+    --exclude=.recently-used \
+    --exclude=.thumbnails \
+    --exclude=.xsession-errors \
+    --exclude=.Trash \
+    --exclude=.steam \
+    --exclude=Downloads \
+    --exclude=GitHub \
+    --exclude=Public \
+    --exclude=Steam \
+    --exclude=Templates \
+    --warning=no-file-changed \
+    --verbose \
+    ~

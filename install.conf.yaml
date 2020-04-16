@@ -34,7 +34,7 @@
     ~/.pythonrc: .pythonrc
     ~/.gitignore_global: .gitignore_global
     ~/.spacemacs: .spacemacs
-    ~/scripts: scripts
+    ~/bin: bin
     ~/.config/fish/fishfile: fishfile
     ~/.tmux.conf: .tmux.conf
     ~/.config/fish/config.fish: config.fish

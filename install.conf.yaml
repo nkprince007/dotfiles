@@ -25,7 +25,6 @@
 - clean: ['~']
 
 - link:
-    ~/.dotfiles: ''
     ~/.gitconfig: .gitconfig
     ~/.profile: .profile
     ~/.config/nvim/init.nvim: .vimrc
@@ -40,6 +39,7 @@
     ~/.tmux.conf: .tmux.conf
     ~/.config/fish/config.fish: config.fish
     ~/.config/kitty: kitty
+    /etc/logid.cfg: logid.cfg
 
 - shell:
     - ["git submodule update --init --recursive", "Installing submodules"]

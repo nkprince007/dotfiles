@@ -140,6 +140,8 @@ ex ()
 
 export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 export PATH="$HOME/flutter/bin:$PATH"
 export PATH="$HOME/Android/Sdk/cmdline-tools/latest/bin:$PATH"
@@ -154,3 +156,11 @@ alias k=kubectl
 alias e=code-insiders
 source /usr/share/nvm/init-nvm.sh
 complete -C /usr/local/bin/mc mc
+
+[[ -s "/home/nkprince007/.gvm/scripts/gvm" ]] && source "/home/nkprince007/.gvm/scripts/gvm"
+
+###-tns-completion-start-###
+if [ -f /home/nkprince007/.tnsrc ]; then 
+    source /home/nkprince007/.tnsrc 
+fi
+###-tns-completion-end-###

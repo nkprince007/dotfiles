@@ -3,40 +3,28 @@
 " ***************************************************************************
 scriptencoding utf-8    " set character encoding to utf-8
 set nocompatible        " do not use vi compatibility
+let &t_ut=''
 
 " i prefer using vim-plug, why because it's so small in size
-" let g:pluginstall=system('[ -s ~/.vim/autoload/plug.vim ] ; echo $?')
-" if g:pluginstall != 0
-"     call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-"     so ~/.vim/autoload/plug.vim
-"     PlugInstall
-" endif
+let g:pluginstall=system('[ -s ~/.vim/autoload/plug.vim ] ; echo $?')
+if g:pluginstall != 0
+  call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+  so ~/.vim/autoload/plug.vim
+  PlugInstall
+endif
 
 " ***************************************************************************
 " PLUGINS
 " ***************************************************************************
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 
 Plug 'dracula/vim', {'as': 'dracula'}
-" Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}    " file navbar
-" Plug 'ctrlpvim/ctrlp.vim'                               " fuzzy search
-" Plug 'airblade/vim-gitgutter'                           " git gutter
-" Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}        " Golang support
-" Plug 'vim-airline/vim-airline'                          " status line
-" Plug 'vim-airline/vim-airline-themes'                   " theme status line
-" Plug 'Valloric/YouCompleteMe'                           " autocomplete
 Plug 'mattn/emmet-vim'                                  " emmet autocomplete
-" Plug 'dougnukem/vim-swap-lines'                         " swap lines
-" Plug 'vim-scripts/indentpython.vim'                     " python autoindent
 Plug 'tpope/vim-fugitive'                               " git wrapper for vim
 Plug 'tpope/vim-surround'                               " surroundings vim
-" Plug 'JamshedVesuna/vim-markdown-preview'               " markdown for vim
 Plug 'tpope/vim-commentary'                             " comments made easy
-" Plug 'mileszs/ack.vim'                                  " project with search
 Plug 'godlygeek/tabular'                                " text alignment
-" Plug 'kien/tabman.vim'                                  " tab management
-" Plug 'ekalinin/Dockerfile.vim'                          " docker support
 Plug 'ap/vim-buftabline'
 
 call plug#end()
@@ -76,10 +64,10 @@ set updatetime=100              " update the refresh interval
 set encoding=utf-8              " set default encoding to utf-8
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 
-" if !has('nvim')
-"     set ttymouse=xterm2         " Indicate terminal type for mouse codes
-"     set ttyscroll=3             " Speedup scrolling
-" endif
+if !has('nvim')
+  set ttymouse=xterm2         " Indicate terminal type for mouse codes
+  set ttyscroll=3             " Speedup scrolling
+endif
 
 set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
@@ -119,9 +107,9 @@ endif
 
 " show cursor line only in active window
 augroup CursorLineOnlyInActiveWindow
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
 augroup END
 
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -129,10 +117,11 @@ augroup WhitespaceMatch
   " Remove ALL autocommands for the WhitespaceMatch group.
   autocmd!
   autocmd BufWinEnter * let w:whitespace_match_number =
-        \ matchadd('ExtraWhitespace', '\s\+$')
+      \ matchadd('ExtraWhitespace', '\s\+$')
   autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
   autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
 augroup END
+
 function! s:ToggleWhitespaceMatch(mode)
   let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'
   if exists('w:whitespace_match_number')
@@ -150,14 +139,14 @@ endfunction
 set autoindent      " auto indentation
 set expandtab       " expand TAB into spaces
 set shiftwidth=4    " helps indent plugins work better
-" set smartindent     " smart choose indentation (e.g. comments continuously)
+set smartindent     " smart choose indentation (e.g. comments continuously)
 set smarttab        " smart add tab in a new line
 set softtabstop=4   " number of spaces to be inserted for a tab
 
 augroup IndentExceptions
-    autocmd!
-    autocmd filetype typescript,html,css setlocal shiftwidth=2
-    autocmd filetype typescript,html,css setlocal softtabstop=2
+  autocmd!
+  autocmd filetype typescript,html,css setlocal shiftwidth=2
+  autocmd filetype typescript,html,css setlocal softtabstop=2
 augroup END
 
 " ***************************************************************************
@@ -186,6 +175,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap Q !!$SHELL<CR>
+
 " Emmet configuration
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
@@ -202,55 +193,28 @@ map <C-t><left> :tabp<cr>
 map <C-t><right> :tabn<cr>
 
 " ctrlp.vim configuration
-" let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
 
 " theme configuration
 " colorscheme dracula
 
-" airline configuration
-let g:airline_theme='dracula'
-" let g:one_allow_italics = 1
-let g:airline#extensions#tabline#enabled = 1
-
-" Golang configuration
-let g:go_auto_sameids = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_fmt_command = "goimports"
-let g:go_list_type = "quickfix"
-let g:go_auto_type_info = 1
-
 augroup go
-    autocmd FileType go nmap <C-n> :cnext<CR>
-    autocmd FileType go nmap <C-m> :cprevious<CR>
-    autocmd FileType go nnoremap <C-a> :cclose<CR>
-    autocmd FileType go nmap <leader>r <Plug>(go-run)
-    autocmd FileType go nmap <leader>t <Plug>(go-test)
-    autocmd FileType go nmap <Leader>i <Plug>(go-info)
-    autocmd FileType go nmap <Leader>c <Plug>(go-coverage-browser)
-    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <C-n> :cnext<CR>
+  autocmd FileType go nmap <C-m> :cprevious<CR>
+  autocmd FileType go nnoremap <C-a> :cclose<CR>
+  autocmd FileType go nmap <leader>r <Plug>(go-run)
+  autocmd FileType go nmap <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-browser)
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 augroup end
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
 
 " Python configuration
 autocmd BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ softtabstop=4
-    \ shiftwidth=4
-    \ textwidth=79
-    \ expandtab
-    \ autoindent
-    \ fileformat=unix
+  \ set tabstop=4
+  \ softtabstop=4
+  \ shiftwidth=4
+  \ textwidth=79
+  \ expandtab
+  \ autoindent
+  \ fileformat=unix

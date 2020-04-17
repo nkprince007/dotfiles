@@ -3,7 +3,7 @@
         email = naveenkumarsangi@protonmail.com
         signingkey = 5CAFA85D98C509F0D5E73C4094273FFC25FEF9F2
 [core]
-        editor = vim
+        editor = nvim
         whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
         excludesfile = ~/.gitignore_global
 [push]

@@ -27,7 +27,7 @@
 - link:
     ~/.gitconfig: .gitconfig
     ~/.profile: .profile
-    ~/.config/nvim/init.nvim: .vimrc
+    ~/.config/nvim/init.vim: .vimrc
     ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile

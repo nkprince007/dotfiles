@@ -31,6 +31,7 @@
     ~/.vimrc: .vimrc
     ~/.bashrc: .bashrc
     ~/.bash_profile: .bash_profile
+    ~/.zshrc: .zshrc
     ~/.pythonrc: .pythonrc
     ~/.gitignore_global: .gitignore_global
     ~/.spacemacs: .spacemacs

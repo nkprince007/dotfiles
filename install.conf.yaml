@@ -40,6 +40,7 @@
     ~/.tmux.conf: .tmux.conf
     ~/.config/fish/config.fish: config.fish
     ~/.config/kitty: kitty
+    ~/.config/alacritty/alacritty.yml: alacritty.yml
     /etc/logid.cfg: logid.cfg
 
 - shell:

@@ -1,13 +1,14 @@
 font:
   normal:
-    family: SF Mono
+    family: Fira Code
     style: Regular
   bold:
-    family: SF Mono
+    family: Fira Code
     style: Bold
   italic:
-    family: SF Mono
+    family: Fira Code
     style: Italic
+  size: 11
 
 window:
   decorations: none

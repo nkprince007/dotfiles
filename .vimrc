@@ -3,7 +3,7 @@
 " ***************************************************************************
 scriptencoding utf-8    " set character encoding to utf-8
 set nocompatible        " do not use vi compatibility
-let &t_ut=''
+set noemoji             " do not treat emoji differently
 
 " i prefer using vim-plug, why because it's so small in size
 let g:pluginstall=system('[ -s ~/.vim/autoload/plug.vim ] ; echo $?')

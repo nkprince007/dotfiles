@@ -2,10 +2,6 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
 fi
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [ -z "$TMUX" ]; then
-  tmux attach || exec tmux new-session && exit;
-fi
-
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir vcs newline)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs)
 #POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
@@ -88,38 +84,21 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# Language environment
+export LANG=en_US.UTF-8
+export LC_ALL=$LANG
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-export EDITOR='vim'
+export EDITOR='nvim'
 export GOPATH="$HOME/go";
-export PATH="$GOPATH/bin:$PATH";
-
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/flutter/bin:$PATH"
-export PATH="$HOME/Android/Sdk/cmdline-tools/latest/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="$HOME/Android/Sdk/cmdline-tools/latest/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH";
+export PATH="$HOME/bin:$PATH"
 export MAKEFLAGS="-j$(($(nproc)+1))"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
@@ -128,17 +107,26 @@ export XDG_CONFIG_HOME="$HOME/.config"
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 export GO111MODULE=auto
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
 alias dc=docker-compose
 alias d=docker
 alias k=kubectl
 alias e=code
 alias vim=nvim
 
-###-tns-completion-start-###
+# typescript node server
 if [ -f /home/nkprince007/.tnsrc ]; then
     source /home/nkprince007/.tnsrc
 fi
-###-tns-completion-end-###
 
+# GPG on terminal
 export GPG_TTY=$(tty)
-export LC_ALL=$LANG
+
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [ -z "$TMUX" ] && [ "$IS_ALACRITTY" = "YES" ]; then
+  tmux attach || exec tmux new-session && exit;
+fi
+

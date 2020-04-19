@@ -8,7 +8,8 @@ font:
   italic:
     family: Fira Code
     style: Italic
-  size: 11
+  #size: 11
+  size: 12
 
 window:
   decorations: none
@@ -63,3 +64,6 @@ colors:
     white:   '0xe6e6d1'
 
   indexed_colors: []
+
+env:
+    IS_ALACRITTY: YES

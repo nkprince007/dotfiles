@@ -93,6 +93,7 @@ export ARCHFLAGS="-arch x86_64"
 
 export EDITOR='nvim'
 export GOPATH="$HOME/go";
+export PATH="/opt/cuda/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/flutter/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"

@@ -124,3 +124,6 @@
 [url "git@gitlab.viperdev.io.com:"]
 	insteadOf = https://gitlab.viperdev.io/
 
+[filter "gitignore"]
+	clean = "sed '/#gitignore-please$/'d"
+	smudge = cat

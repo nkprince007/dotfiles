@@ -1,7 +1,3 @@
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
-fi
-
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir vcs newline)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs)
 #POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
@@ -91,9 +87,10 @@ export LC_ALL=$LANG
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-export EDITOR='nvim'
+export EDITOR='vim'
 export GOPATH="$HOME/go";
 export PATH="/opt/cuda/bin:$PATH"
+export PATH="/opt/postman:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/flutter/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
@@ -117,7 +114,6 @@ alias dc=docker-compose
 alias d=docker
 alias k=kubectl
 alias e=code
-alias vim=nvim
 
 # typescript node server
 if [ -f /home/nkprince007/.tnsrc ]; then

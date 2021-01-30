@@ -25,6 +25,8 @@
         added = green bold
         changed = yellow bold
         untracked = red bold
+[commit]
+        gpgsign = true
 [diff]
         tool = vimdiff
 [difftool]
@@ -93,8 +95,6 @@
         change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
 [merge]
         tool = code
-[commit]
-        gpgsign = true
 [advice]
         statusHints = false
 [filter "lfs"]
@@ -127,3 +127,5 @@
 [filter "gitignore"]
 	clean = "sed '/#gitignore-please$/'d"
 	smudge = cat
+[pull]
+	rebase = true

@@ -8,14 +8,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/nkprince007/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
-#ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="refined"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -74,13 +73,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode git nvm pyenv virtualenv z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git nvm pyenv z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# Language environment
+# User environment
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 
@@ -88,22 +85,20 @@ export LC_ALL=$LANG
 export ARCHFLAGS="-arch x86_64"
 
 export EDITOR='vim'
-export GOPATH="$HOME/go";
+export GOPATH="$HOME/go"
 export PATH="/opt/cuda/bin:$PATH"
 export PATH="/opt/postman:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/flutter/bin:$PATH"
+export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export PATH="$HOME/Android/Sdk/cmdline-tools/latest/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH";
+export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-export MAKEFLAGS="-j$(($(nproc)+1))"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
 export XDG_CONFIG_HOME="$HOME/.config"
-
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
-
 export GO111MODULE=auto
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -113,17 +108,7 @@ export GO111MODULE=auto
 alias dc=docker-compose
 alias d=docker
 alias k=kubectl
-alias e=code
-
-# typescript node server
-if [ -f /home/nkprince007/.tnsrc ]; then
-    source /home/nkprince007/.tnsrc
-fi
+alias e=code-insiders
 
 # GPG on terminal
 export GPG_TTY=$(tty)
-
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [ -z "$TMUX" ] && [ "$IS_ALACRITTY" = "YES" ]; then
-  tmux attach || exec tmux new-session && exit;
-fi
-

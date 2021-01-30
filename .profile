@@ -10,9 +10,6 @@ export SCRIPTS=$HOME/scripts
 # Prefer homebrew binaries to local ones
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-# gnupg config
-export "GPG_TTY=$(tty)"
-
 # golang configuration
 export GOPATH=$PROJECTS
 

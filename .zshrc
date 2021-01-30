@@ -109,6 +109,3 @@ alias dc=docker-compose
 alias d=docker
 alias k=kubectl
 alias e=code-insiders
-
-# GPG on terminal
-export GPG_TTY=$(tty)

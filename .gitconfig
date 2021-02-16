@@ -129,7 +129,5 @@
 	smudge = cat
 [pull]
 	rebase = true
-[gpg]
-	program = gpg2
 [credential]
 	helper = osxkeychain

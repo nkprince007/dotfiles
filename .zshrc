@@ -77,27 +77,16 @@ plugins=(git nvm pyenv z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-# User environment
-export LANG=en_US.UTF-8
-export LC_ALL=$LANG
-
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
 export EDITOR='vim'
-export GOPATH="$HOME/go"
-export PATH="/opt/cuda/bin:$PATH"
-export PATH="/opt/postman:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export PATH="$HOME/Android/Sdk/cmdline-tools/latest/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export ANDROID_HOME="$HOME/Android/Sdk"
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+export JAVA_HOME="$(/usr/libexec/java_home -v 11)"
 export XDG_CONFIG_HOME="$HOME/.config"
 export GO111MODULE=auto
 
@@ -109,3 +98,34 @@ alias dc=docker-compose
 alias d=docker
 alias k=kubectl
 alias e=code-insiders
+alias ibrew="arch -x86_64 /usr/local/bin/brew"
+
+# Custom user environment
+if [ -f '$HOME/.profile' ]; then
+    source '$HOME/.profile'
+fi
+
+# The next line updates PATH for the Google Cloud SDK
+if [ -f '/opt/local/google-cloud-sdk/path.zsh.inc' ]; then
+    source '/opt/local/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud
+if [ -f '/opt/local/google-cloud-sdk/completion.zsh.inc' ]; then
+    source '/opt/local/google-cloud-sdk/completion.zsh.inc'
+fi
+
+# Custom user functions
+
+# jdk function shows currently installed Java Development Kit environments
+# and allows user to switch current environment by passing version as the
+# argument to it.
+jdk() {
+    if [ -z "$1" ]; then
+        /usr/libexec/java_home -V
+    else
+        version=$1
+        export JAVA_HOME=$(/usr/libexec/java_home -v"$version")
+        java -version
+    fi
+}

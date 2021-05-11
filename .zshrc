@@ -14,7 +14,7 @@ export ZSH="/home/nkprince007/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="refined"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Set list of themes to pick from when loading at random
@@ -74,7 +74,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode git nvm pyenv virtualenv z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(vi-mode docker git nvm pyenv virtualenv z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,6 +101,7 @@ export MAKEFLAGS="-j$(($(nproc)+1))"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
 export XDG_CONFIG_HOME="$HOME/.config"
+export COMPOSE_DOCKER_CLI_BUILD=1
 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
@@ -110,7 +111,7 @@ export GO111MODULE=auto
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias dc=docker-compose
+alias dc="docker compose"
 alias d=docker
 alias k=kubectl
 alias e=code
@@ -127,3 +128,4 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [ -z "$TMUX" ] && [ "$IS_ALA
   tmux attach || exec tmux new-session && exit;
 fi
 
+export VIRTUAL_ENV_DISABLE_PROMPT=0

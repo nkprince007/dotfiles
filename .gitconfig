@@ -33,9 +33,8 @@
         a = add --all
 
         b = branch
-        c = commit -S
-        ca = commit -S --amend
-        commit = commit -S
+        c = commit
+        ca = commit --amend
 
         d = diff
         ds = diff --staged
@@ -92,9 +91,7 @@
         sync = codereview sync
         change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
 [merge]
-        tool = code
-[commit]
-        gpgsign = true
+        tool = vimdiff
 [advice]
         statusHints = false
 [filter "lfs"]

@@ -138,22 +138,10 @@ ex() {
 	fi
 }
 
-export GOPATH="$HOME/go"
-export GOROOT="$HOME/.go"
-export PATH="$GOPATH/bin:$PATH" # g-install: do NOT edit, see https://github.com/stefanmaric/g
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-export PATH="$HOME/flutter/bin:$PATH"
-export PATH="$HOME/Android/Sdk/cmdline-tools/latest/bin:$PATH"
-export MAKEFLAGS="-j$(($(nproc) + 1))"
-
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
-export GO111MODULE=auto
-alias dc=docker-compose
-alias d=docker
-alias k=kubectl
-source /usr/share/nvm/init-nvm.sh
-complete -C /usr/local/bin/mc mc
+[[ -r "$HOME/.profile" ]] && source $HOME/.profile
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion

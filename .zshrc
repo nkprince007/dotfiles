@@ -73,46 +73,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm pyenv z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git nvm z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
-# Compilation flags
-export EDITOR='vim'
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
-export PATH="$HOME/Android/Sdk/cmdline-tools/latest/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export ANDROID_HOME="$HOME/Android/Sdk"
-export JAVA_HOME="$(/usr/libexec/java_home -v 11)"
-export XDG_CONFIG_HOME="$HOME/.config"
-export GO111MODULE=auto
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-alias dc=docker-compose
-alias d=docker
-alias k=kubectl
-alias e=code-insiders
-alias ibrew="arch -x86_64 /usr/local/bin/brew"
 
 # Custom user environment
 if [ -f '$HOME/.profile' ]; then
     source '$HOME/.profile'
-fi
-
-# The next line updates PATH for the Google Cloud SDK
-if [ -f '/opt/local/google-cloud-sdk/path.zsh.inc' ]; then
-    source '/opt/local/google-cloud-sdk/path.zsh.inc'
-fi
-
-# The next line enables shell command completion for gcloud
-if [ -f '/opt/local/google-cloud-sdk/completion.zsh.inc' ]; then
-    source '/opt/local/google-cloud-sdk/completion.zsh.inc'
 fi
 
 # Custom user functions
@@ -129,3 +96,26 @@ jdk() {
         java -version
     fi
 }
+
+# penv function shows currently installed python environments
+# and allows user to switch current environment by passing version as the
+# argument to it.
+penv() {
+    if [ -z "$1" ]; then
+        port select --list python
+    else
+        version=$1
+        sudo port select --set python python$version
+        sudo port select --set pip pip$version
+        export PATH="$PATH:$HOME/Library/Python/$(stat -f %Y /opt/local/bin/python | sed 's/[^0-9\.]*//g')/bin"
+        echo "$PATH is now updated"
+    fi
+}
+
+# added by Nix installer
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+    . $HOME/.nix-profile/etc/profile.d/nix.sh
+fi
+
+# nix direnv loader
+eval "$(direnv hook zsh)"

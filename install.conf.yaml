@@ -19,10 +19,10 @@
 
 - defaults:
     link:
-        create: true
-        relink: true
+      create: true
+      relink: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - link:
     ~/.gitconfig: .gitconfig

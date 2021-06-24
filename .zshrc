@@ -78,8 +78,8 @@ plugins=(git nvm z zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Custom user environment
-if [ -f '$HOME/.profile' ]; then
-    source '$HOME/.profile'
+if [ -f $HOME/.profile ]; then
+    . $HOME/.profile
 fi
 
 # Custom user functions
